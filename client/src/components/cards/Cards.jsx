@@ -1,5 +1,6 @@
 import "./cards.css"
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const Cards = () => {
     const peopleData = [
@@ -41,17 +42,18 @@ const Cards = () => {
         return(
             <div className="card">
                 <div className="imgWrapper">
-                 <img src={image} alt="pictures" />
+                 <img src={image} alt="pictures" className="cardImage" />
                 </div>
                 <p>Name: {name}</p>
                 <p>Age: {age}</p>
                 <p>Hobby: {hobby}</p>
-                <button>VIEW MORE</button>
+                <button className="cardBtn">VIEW MORE</button>
             </div>
         )
     })
     
     }
+    <Link to="/create" className="createNewBtn"><span>CREATE NEW</span></Link>
     </div>
   )
 }
