@@ -1,12 +1,14 @@
 import "./create.css"
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [hobby, setHobby] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate();
 
 
 
@@ -14,8 +16,9 @@ const Create = () => {
         e.preventDefault();
 
         try{
-            await axios.post("http://localhost:8800/api/auth/register", { name, age, hobby });
-            setSuccessMessage("New User Created");    
+            await axios.post("auth/register", { name, age, hobby });
+            setSuccessMessage("New User Created");   
+            navigate("/");
         }catch(err){
             console.log("there's an error");
         }

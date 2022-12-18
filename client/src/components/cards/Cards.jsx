@@ -1,60 +1,59 @@
 import "./cards.css"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const Cards = () => {
-    const peopleData = [
-        {
-            id: 1,
-            name: "James Ake",
-            age: 20,
-            hobby: "Football",
-            image: "https://www.bellanaija.com/wp-content/uploads/2015/01/MXaa41eH_400x400.jpeg",
+   const [users, setUsers] = useState("");
+   const [errMessage, setErrMessage] = useState("");
+    
+    useEffect(() => {
+        getUsers();
+      },[]); 
 
-        },
-        {
-            id: 2,
-            name: "Sharon Ade",
-            age: 22,
-            hobby: "Piano",
-            image: "https://media.theeverygirl.com/wp-content/uploads/2019/11/patrice-williams-headshot-theeverygirl.jpg",
-        },
-        {
-            id: 3,
-            name: "Helen Ola",
-            age: 19,
-            hobby: "Dancing",
-            image: "https://i0.wp.com/misspetitenaijablog.com/wp-content/uploads/2018/06/Screen-Shot-2018-06-17-at-15.31.08.png?resize=487%2C512",
-        },
-        {
-            id: 4,
-            name: "Collins Emeka",
-            age: 24,
-            hobby: "Music",
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLR1zJ3iH2Q_Utjracjg2j51TP24dYBmN01g&usqp=CAU",
+      const getUsers = async () =>{
+        try{
+            const response = await axios.get("/users/");
+            setUsers(response.data); 
+            console.log(response); 
+        }catch(err){
+            setErrMessage(err.response.statusText);
+            console.log(err);
         }
-    ]
+    }
+
 
   return (
+  <div className="cardsContainer">
     <div className="cards">
-    {
-    peopleData.map(({id, name, age,  hobby, image})=>{ //i chose to destructure it here. Alternaltively, i could just put eg "person" in the bracket, and in the jsx below, write "person.title", "person.age" etc.
+    {users &&
+    users.map(({_id, name, age,  hobby, profilePic})=>{ //i chose to destructure it here. Alternaltively, i could just put eg "person" in the bracket, and in the jsx below, write "person.title", "person.age" etc.
         return(
-            <div className="card">
+            <div className="card" key={_id}>
                 <div className="imgWrapper">
-                 <img src={image} alt="pictures" className="cardImage" />
+                 <img src={profilePic} alt="pictures" className="cardImage" />
                 </div>
                 <p>Name: {name}</p>
                 <p>Age: {age}</p>
                 <p>Hobby: {hobby}</p>
-                <button className="cardBtn">VIEW MORE</button>
+                <Link to= {`/user/${_id}`}>
+                  <button className="cardBtn">VIEW MORE</button>
+                </Link>
             </div>
+          
         )
     })
     
     }
-    <Link to="/create" className="createNewBtn"><span>CREATE NEW</span></Link>
+    
     </div>
+    {
+    errMessage && 
+    <div>{errMessage}</div>
+    }
+    <Link to="/create" className="createNewBtn"><span>CREATE NEW</span></Link>
+  </div>
   )
 }
 
