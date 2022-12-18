@@ -1,12 +1,11 @@
 .cards{
     display: grid;
-    grid-template-columns: 30rem 30rem;
-    row-gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 7rem;
     margin-left: auto;
     margin-right: auto;
-    width: fit-content;
+    width: max-content;
     margin-top: 4rem;
-    
 }
 
 .card{
@@ -48,10 +47,13 @@
 }
 
 .createNewBtn{
+    display: block;
+    margin-top: 1.5rem;
     background-color: rgb(199, 32, 32);
     color: white;
     width: max-content;
-    margin-left: 21rem;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
     border-radius: 10px;
     cursor: pointer;
