@@ -13,7 +13,7 @@ const CardSkeleton = ({cards}) => {
         <div className="rightColumn">
             <Skeleton count={6} style={{fontSize: "1.5rem", marginBottom: ".6rem"}} />
         </div>
-
+    
     </div>
         )
     
