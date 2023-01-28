@@ -40,9 +40,9 @@ const Cards = () => {
                 <div className="imgWrapper">
                  <img src={profilePic} alt="pictures" className="cardImage" />
                 </div>
-                <p>Name: {name}</p>
-                <p>Age: {age}</p>
-                <p>Hobby: {hobby}</p>
+                <p className="cardText">Name: {name}</p>
+                <p className="cardText">Age: {age}</p>
+                <p className="cardText">Hobby: {hobby}</p>
                 <Link to= {`/user/${_id}`}>
                   <button className="cardBtn">VIEW MORE</button>
                 </Link>
