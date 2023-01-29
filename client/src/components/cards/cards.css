@@ -9,13 +9,18 @@
 }
 
 .card{
-    border: solid 1px teal;
+    border: solid 3px teal;
     width: 20rem;
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
     position: relative;
-    
+    transition: all 1s ease;
+    cursor: pointer;
+}
+
+.card:hover{
+    border-color: red;
 }
 
 .cardImage{
