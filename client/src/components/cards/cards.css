@@ -15,7 +15,12 @@
     padding: 1rem;
     text-align: center;
     position: relative;
-    
+    transition: all 1s ease;
+    cursor: pointer;
+}
+
+.card:hover{
+    border-color: red;
 }
 
 .cardImage{
