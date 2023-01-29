@@ -73,3 +73,11 @@
     background-color: rgb(238, 39, 39);
 }
 
+.cardText{
+    transition: all 1s ease;
+}
+
+.cardText:hover{
+    font-size: larger;
+}
+

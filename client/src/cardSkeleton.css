@@ -1,0 +1,15 @@
+.cardSkeleton{
+    display: flex;
+    width: 20rem;
+    padding: 0.5rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+
+.cardSkeleton .leftColumn{
+    margin-right: 1rem;
+}
+
+.cardSkeleton .rightColumn{
+    flex: 1;
+}
