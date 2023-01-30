@@ -7,6 +7,7 @@ router.post("/register", async (req, res) =>{
         name: req.body.name,
         age: req.body.age,
         hobby: req.body.hobby,
+        profilePic: req.body.profilePic
     });
 
     try{

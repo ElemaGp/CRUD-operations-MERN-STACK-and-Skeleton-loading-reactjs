@@ -12,15 +12,37 @@ const Create = () => {
     const [age, setAge] = useState("");
     const [hobby, setHobby] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [image, setImage] = useState("");
+    const [imgCloudinaryUrl, setImgCloudinaryUrl] = useState("");
     const navigate = useNavigate();
 
 
+    //uploading the selected image to cloudinary and storing its returned url to the "imgCloudinaryUrl" useSate.
+    const postDetails = ()=>{
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset", "crud-operation")
+        data.append("cloud_name", "dxyejrjbp")
+        fetch("https://api.cloudinary.com/v1_1/dxyejrjbp/image/upload",{
+            method: "post",
+            body: data
+        })
+        .then(res=>res.json())  //the argument in a ".then" method basically means the response. You can use anything as it's placeholder text. Here it is called "res". Below, it is called "data"
+        .then(data=>{           //the argument in a ".then" method basically means the response. You can use anything as it's placeholder text. Here it is called "data". Above, it is called "res"
+            console.log(data)
+            setImgCloudinaryUrl(data.url);
+            console.log(data.url);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
         try{
-            await axios.post("auth/register", { name, age, hobby });
+            await axios.post("auth/register", { name, age, hobby, profilePic:imgCloudinaryUrl });
             setSuccessMessage("New User Created"); 
             notify();
             // navigate("/"); //comment out this "navigate" function if you want to see the toastify alert in the component.
@@ -78,6 +100,15 @@ const Create = () => {
                     onChange={(e)=>setHobby(e.target.value)}
                     />
                 </div>
+
+                <div className="eachContainer">
+                    <label htmlFor="img">UPLOAD IMAGE</label>
+                    <input id="img" 
+                    type="file" 
+                    onChange={(e)=>setImage(e.target.files[0])}
+                    />
+                </div>
+                <span onClick={postDetails} style={{backgroundColor: "orange", padding: "1rem", color: "white", borderRadius: "6px", marginBottom: "7px"}}>Submit image</span>
 
                 <button className="createBtn">CREATE USER</button>
                 <div>{successMessage}</div>
