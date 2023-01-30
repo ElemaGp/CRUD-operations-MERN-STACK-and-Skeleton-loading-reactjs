@@ -13,10 +13,11 @@ const Create = () => {
     const [hobby, setHobby] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [image, setImage] = useState("");
+    const [imgCloudinaryUrl, setImgCloudinaryUrl] = useState("");
     const navigate = useNavigate();
 
 
-    //it seems the image has to be about 10kb or less, else you'll see a cors error. You can check resources for how to increase file upload limit for cloudinary mern stack.
+    //uploading the selected image to cloudinary and storing its returned url to the "imgCloudinaryUrl" useSate.
     const postDetails = ()=>{
         const data = new FormData()
         data.append("file", image)
@@ -29,6 +30,8 @@ const Create = () => {
         .then(res=>res.json())  //the argument in a ".then" method basically means the response. You can use anything as it's placeholder text. Here it is called "res". Below, it is called "data"
         .then(data=>{           //the argument in a ".then" method basically means the response. You can use anything as it's placeholder text. Here it is called "data". Above, it is called "res"
             console.log(data)
+            setImgCloudinaryUrl(data.url);
+            console.log(data.url);
         })
         .catch(err=>{
             console.log(err);
@@ -39,7 +42,7 @@ const Create = () => {
         e.preventDefault();
 
         try{
-            await axios.post("auth/register", { name, age, hobby });
+            await axios.post("auth/register", { name, age, hobby, profilePic:imgCloudinaryUrl });
             setSuccessMessage("New User Created"); 
             notify();
             // navigate("/"); //comment out this "navigate" function if you want to see the toastify alert in the component.

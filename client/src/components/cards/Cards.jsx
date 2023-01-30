@@ -34,11 +34,11 @@ const Cards = () => {
     <div className="cards">
     {isLoading && <CardSkeleton cards={8} />}
     {users &&
-    users.map(({_id, name, age,  hobby, profilePic})=>{ //i chose to destructure it here. Alternaltively, i could just put eg "person" in the bracket, and in the jsx below, write "person.title", "person.age" etc.
+    users.map(({_id, name, age,  hobby, profilePic})=>{ //i chose to destructure it here. Alternaltively, i could just put eg "person" in the bracket, and in the jsx below, write "person.title", "person.age" etc just like is done in the "BlogList" component of the "1-Liner" project.
         return(
             <div className="card" key={_id}>
                 <div className="imgWrapper">
-                 <img src={profilePic} alt="pictures" className="cardImage" />
+                 <img src={profilePic ? profilePic : "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"} alt="pictures" className="cardImage" />
                 </div>
                 <p className="cardText">Name: {name}</p>
                 <p className="cardText">Age: {age}</p>
