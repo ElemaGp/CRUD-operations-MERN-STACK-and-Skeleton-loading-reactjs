@@ -82,3 +82,10 @@
     text-decoration: underline;
 }
 
+
+/*============== MEDIA QUERIES (MEDIUM DEVICES) ie. tablets ============= */
+@media screen and (max-width: 1024px) {
+    .cards{
+        grid-template-columns: 1fr;
+    }
+}
