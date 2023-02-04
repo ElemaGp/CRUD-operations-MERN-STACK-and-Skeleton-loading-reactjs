@@ -4,10 +4,13 @@ import Create from './pages/create/Create';
 import EditUser from './pages/editUser/EditUser';
 import Home from './pages/home/Home';
 import SingleUser from './pages/singleUser/SingleUser';
+import { useState } from 'react';
 
 function App() {
+
+  const [dark, setDark] = useState(true);
   return (
-    <div className="app">
+    <div className={dark ? "darkApp" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/">
