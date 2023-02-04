@@ -75,6 +75,7 @@
 
 .cardText{
     transition: all 1s ease;
+    margin-bottom: 1rem;
 }
 
 .cardText:hover{
