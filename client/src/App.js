@@ -5,12 +5,15 @@ import EditUser from './pages/editUser/EditUser';
 import Home from './pages/home/Home';
 import SingleUser from './pages/singleUser/SingleUser';
 import { useState } from 'react';
+import { FormControlLabel, Switch } from '@mui/material';
 
 function App() {
 
-  const [dark, setDark] = useState(true);
+  const [checked, setChecked] = useState(false);
+
   return (
-    <div className={dark ? "darkApp" : "app"}>
+    <div className={checked ? "darkApp" : "app"}>
+      <FormControlLabel label="Dark mode" control={<Switch size="large" checked={checked} onChange={(e)=>setChecked(e.target.checked)}/>} /> {/*Getting the value from the "switch" element (note that whenever the switch is switched on, the "checked" prop value is true and whenever it is switched off, the "checked" prop value is false. I'm simply grabbing that value using my own "checked" useState. )*/}
       <BrowserRouter>
         <Routes>
           <Route path="/">
